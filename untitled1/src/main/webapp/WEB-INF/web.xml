@@ -7,10 +7,15 @@
   <servlet>
     <servlet-name>Spring</servlet-name>
     <servlet-class> org.springframework.web.servlet.DispatcherServlet</servlet-class>
+<!--    có thể đổi tên của dispathcherServlet nhưng chúng ta phải config như bên dưới-->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/beans.xml</param-value>
+    </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>Spring</servlet-name>
-    <url-pattern>/home/*</url-pattern>
+    <url-pattern>/home/*</url-pattern> 
   </servlet-mapping>
 </web-app>
