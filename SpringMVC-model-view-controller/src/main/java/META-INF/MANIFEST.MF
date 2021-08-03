@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: 
+Class-Path: spring-context-4.3.3.RELEASE.jar spring-expression-4.3.3.REL
+ EASE.jar spring-beans-4.3.3.RELEASE.jar commons-logging-1.2.jar spring-
+ web-4.3.3.RELEASE.jar jstl-1.2.jar spring-core-4.3.3.RELEASE.jar spring
+ -webmvc-4.3.3.RELEASE.jar spring-aop-4.3.3.RELEASE.jar
+
