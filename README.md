@@ -16,3 +16,8 @@ Tạo một project Spring MVC bằng inteliji
       <artifactId>spring-webmvc</artifactId>
       <version>4.3.3.RELEASE</version>
     </dependency>
+
+      <bean id="ViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
