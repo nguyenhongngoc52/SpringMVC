@@ -32,7 +32,7 @@
             <form:option value="MAS" label="Malaysia"></form:option>
         </form:select>
         <br/>
-        <label>Hobby :</label>
+        <label>Hobby : </label>
         Cricket : <form:checkbox path="hobby" value="cricket"/>
         Soccer : <form:checkbox path="hobby" value="soccer"/>
         Music : <form:checkbox path="hobby" value="music"/>

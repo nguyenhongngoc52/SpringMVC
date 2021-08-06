@@ -32,7 +32,7 @@
             <form:option value="MAS" label="Malaysia"></form:option>
         </form:select>
         <br/>
-        <label>Hobby :</label>
+        <label>Hobby : </label>
         Cricket : <form:checkbox path="hobby" value="cricket"/>
         Soccer : <form:checkbox path="hobby" value="soccer"/>
         Music : <form:checkbox path="hobby" value="music"/>
@@ -41,8 +41,18 @@
         Male <form:radiobutton path="gender" value="male"/>
         Female <form:radiobutton path="gender" value="female"/>
         <br/>
+        <label>Age</label>
+        <form:input path="age"></form:input>
         <input type="submit" value="register">
     </form:form>
+</div>
+<div align="center">
+    <h3>Communication</h3>
+    <label>Email :</label>
+    <form:input path="communicationDTO.email"></form:input>
+
+    <label>Phone :</label>
+    <form:input path="communicationDTO.phone.toString()"></form:input>
 </div>
 </body>
 </html>

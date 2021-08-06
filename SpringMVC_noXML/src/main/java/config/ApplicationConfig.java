@@ -1,15 +1,18 @@
 package config;
 
+import formatter.phoneNumberFormatter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = "controller")
-public class ApplicationConfig {
+public class ApplicationConfig implements WebMvcConfigurer {
 
     @Bean
     public InternalResourceViewResolver resolver(){
@@ -19,4 +22,9 @@ public class ApplicationConfig {
         return viewResolver;
     }
 
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        System.out.println("inside addFormatter method ");
+        registry.addFormatter(new phoneNumberFormatter());
+    }
 }
