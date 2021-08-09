@@ -24,6 +24,12 @@ Hobby :
 </c:forEach>
 <br/>
 Gender : ${userReg.gender}
+<br/>
+Gender : ${userReg.age}
+<br/>
+Email : ${userReg.communicationDTO.email}
+<br/>
+Phone : ${userReg.communicationDTO.phone}
 
 </body>
 </html>

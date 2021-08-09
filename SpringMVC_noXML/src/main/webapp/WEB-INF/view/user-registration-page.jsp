@@ -43,16 +43,21 @@
         <br/>
         <label>Age</label>
         <form:input path="age"></form:input>
-        <input type="submit" value="register">
-    </form:form>
-</div>
+
+
+
 <div align="center">
     <h3>Communication</h3>
     <label>Email :</label>
     <form:input path="communicationDTO.email"></form:input>
 
     <label>Phone :</label>
-    <form:input path="communicationDTO.phone.toString()"></form:input>
+    <form:input path="communicationDTO.phone"></form:input>
+
+</div>
+        <br/>
+<input  type="submit" value="register">
+</form:form>
 </div>
 </body>
 </html>
