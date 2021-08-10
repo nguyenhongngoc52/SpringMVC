@@ -1,5 +1,7 @@
 package API;
 
+import Validator.Age;
+
 public class UserRegistrationDTO {
     private String name;
     private String userName;
@@ -7,7 +9,8 @@ public class UserRegistrationDTO {
     private String countryName;
     private String[] hobby;
     private String gender;
-    private int age;
+    @Age(lower = 30 , upper = 75 , message = "aaaaaaaa")
+    private Integer age;
     private CommunicationDTO communicationDTO;
 
     public String getName() {
@@ -66,11 +69,11 @@ public class UserRegistrationDTO {
         this.communicationDTO = communicationDTO;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 }
