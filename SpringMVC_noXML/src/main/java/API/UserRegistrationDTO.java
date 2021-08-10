@@ -9,7 +9,7 @@ public class UserRegistrationDTO {
     private String countryName;
     private String[] hobby;
     private String gender;
-    @Age(lower = 30 , upper = 75 , message = "aaaaaaaa")
+    @Age(lower = 30 , upper = 75 )
     private Integer age;
     private CommunicationDTO communicationDTO;
 
