@@ -2,7 +2,10 @@ package API;
 
 import Validator.Age;
 
+import javax.validation.constraints.NotEmpty;
+
 public class UserRegistrationDTO {
+    @NotEmpty(message = "* can not be empty ")
     private String name;
     private String userName;
     private char[] password;

@@ -15,8 +15,11 @@
 <body>
 <h1 align="center">Love Calculator</h1>
 <hr>
-<p>so i am getting my result </p>
-<p> userName is : ${userInfo.userName}</p>
-<p> crushName is : ${userInfo.crushName}</p>
+<h2>The Love Calculator Predicts :</h2>
+<br/>
+<p>  ${userInfo.userName} and ${userInfo.crushName} are FRIEND </p>
+<br/>
+<a href="/sendEmail"> Send result to your Email </a>
+
 </body>
 </html>

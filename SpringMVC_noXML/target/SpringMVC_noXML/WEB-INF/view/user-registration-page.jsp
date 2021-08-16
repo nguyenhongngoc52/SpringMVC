@@ -27,9 +27,11 @@
     <form:form action="registration-success" method="get" modelAttribute="userReg">
         <label> User :</label>
         <form:input path="name"/>
+        <form:errors path="name" cssClass="err"></form:errors>
         <br/>
         <label>User Name :</label>
         <form:input path="userName"></form:input>
+        <form:errors path="userName" cssClass="err"></form:errors>
         <br/>
         <label>Password :</label>
         <form:password path="password"></form:password>
@@ -60,7 +62,8 @@
     <h3>Communication</h3>
     <label>Email :</label>
     <form:input path="communicationDTO.email"></form:input>
-
+    <form:errors path="communicationDTO.email" cssClass="err"></form:errors>
+    <br/>
     <label>Phone :</label>
     <form:input path="communicationDTO.phone"></form:input>
 

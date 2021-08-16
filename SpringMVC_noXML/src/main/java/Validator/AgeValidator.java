@@ -7,7 +7,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class AgeValidator implements ConstraintValidator<Age,Integer> {
+public class AgeValidator implements ConstraintValidator<Age, Integer> {
     private int lower;
     private int upper;
 
@@ -19,10 +19,10 @@ public class AgeValidator implements ConstraintValidator<Age,Integer> {
 
     @Override
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
-        if(value==null){
+        if (value == null) {
             return false;
         }
-        if(value < lower|| value >upper){
+        if (value < lower || value > upper) {
             return false;
         }
         return true;
