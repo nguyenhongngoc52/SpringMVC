@@ -17,7 +17,7 @@
 <hr>
 <h2>The Love Calculator Predicts :</h2>
 <br/>
-<p>  ${userInfo.userName} and ${userInfo.crushName} are FRIEND </p>
+<p>  ${userInfo.userName} and ${userInfo.crushName} are ${userInfo.reSult}</p>
 <br/>
 <a href="/sendEmail"> Send result to your Email </a>
 

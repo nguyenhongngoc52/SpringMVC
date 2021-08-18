@@ -1,7 +1,9 @@
 package controller;
 
 import API.UserinfoDTO;
+import Service.LCAppService;
 import com.sun.deploy.net.HttpResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,8 @@ import java.util.List;
 @Controller
 @SessionAttributes("userInfo")
 public class LCAppController {
+    @Autowired
+    private  LCAppService lcAppService;
     @RequestMapping("/")
     public String  homePage( Model model){
 //        Cookie[] cookies = request.getCookies();
@@ -33,12 +37,14 @@ public class LCAppController {
         return "home-page";
     }
     @RequestMapping("/process-homepage")
-    public String reSulthomePage(@Valid  @ModelAttribute("userInfo") UserinfoDTO userinfoDTO , BindingResult result , HttpServletResponse response){
+    public String reSulthomePage(@Valid UserinfoDTO userinfoDTO, BindingResult result, Model model  , HttpServletResponse response){
         //write the value to the property by fatching from the url
 //        System.out.println("userName is :" + userinfoDTO.getUserName());
 //        System.out.println("crushName is :" + userinfoDTO.getCrushName());
 //        model.addAttribute("userInfo" , userinfoDTO);
        // model.addAttribute("crushName" , crushName1);
+        model.addAttribute("userInfo" , userinfoDTO);
+        model.addAttribute(BindingResult.MODEL_KEY_PREFIX + "userInfo",result);
         System.out.println(userinfoDTO.isTermAndCondition());
         if(result .hasErrors()){
             System.out.println("my form has errors...");
@@ -46,6 +52,7 @@ public class LCAppController {
             for(ObjectError i:errors){
                 System.out.println(i);
             }
+
             return"home-page";
         }
         //create a cookie for the user name
@@ -54,7 +61,8 @@ public class LCAppController {
         //add the cookie to the respone
         response.addCookie(theCookie);
         //write service
-
+        String resultUsApp = lcAppService.calculateLove(userinfoDTO.getUserName(), userinfoDTO.getCrushName());
+            userinfoDTO.setReSult(resultUsApp);
         return"result-homepage";
     }
 

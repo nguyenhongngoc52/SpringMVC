@@ -24,7 +24,8 @@ public class EmailController {
 
     @RequestMapping("/process-email")
     public String processEmail(@SessionAttribute("userInfo") UserinfoDTO userinfoDTO, @ModelAttribute("emailDTO") EmailDTO emailDTO) {
-        lcAppEmailService.sendEmail(userinfoDTO.getUserName(), emailDTO.getUserEmail(), "FRIEND");
+
+        lcAppEmailService.sendEmail(userinfoDTO.getUserName(), emailDTO.getUserEmail(), userinfoDTO.getReSult());
         return "process-email-page";
     }
 

@@ -7,13 +7,14 @@ import javax.validation.constraints.Size;
 
 public class UserinfoDTO {
     @NotBlank(message = " * userName can't be blank ..")
-    @Size(min = 3,max = 15,message = "* your name should hace at least  betwen 3-15 char")
-    private String userName ;
+    @Size(min = 3, max = 15, message = "* your name should hace at least  betwen 3-15 char")
+    private String userName;
     @NotBlank(message = " * userName can't be blank ..")
-    @Size(min = 3,max = 15,message = "* your name should hace at least  betwen 3-15 char")
-    private String crushName ;
+    @Size(min = 3, max = 15, message = "* your name should hace at least  betwen 3-15 char")
+    private String crushName;
     @AssertTrue(message = "you have to agree to use app")
     private boolean termAndCondition;
+    private String reSult;
 
     public UserinfoDTO() {
         System.out.println("user info dto constructor called.... ");
@@ -41,6 +42,14 @@ public class UserinfoDTO {
 
     public void setTermAndCondition(boolean termAndCondition) {
         this.termAndCondition = termAndCondition;
+    }
+
+    public String getReSult() {
+        return reSult;
+    }
+
+    public void setReSult(String reSult) {
+        this.reSult = reSult;
     }
 
     @Override
