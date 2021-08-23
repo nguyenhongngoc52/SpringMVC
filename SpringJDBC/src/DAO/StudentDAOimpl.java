@@ -1,6 +1,8 @@
 package DAO;
 
 import Api.Student;
+import ResultSetExtractor.StudentAddressExtractor;
+import ResultSetExtractor.StudentResultExtractor;
 import RowMapper.StudentRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -12,6 +14,7 @@ import javax.lang.model.type.ArrayType;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Repository("studentDao")
 public class StudentDAOimpl implements StudentDAO {
@@ -52,6 +55,14 @@ public class StudentDAOimpl implements StudentDAO {
     public List<Student> findAllStudent() {
         String sql = "SELECT * FROM STUDENT";
         List<Student> studentList = jdbcTemplate.query(sql, new StudentRowMapper());
+
+        return studentList;
+    }
+
+    @Override
+    public List<Student> findStudentByName(String name) {
+        String sql ="SELECT * FROM STUDENT WHERE STUDENT_NAME = ? ";
+        List<Student> studentList = jdbcTemplate.query(sql,new StudentResultExtractor(),name);
         return studentList;
     }
 
@@ -84,6 +95,13 @@ public class StudentDAOimpl implements StudentDAO {
         String sql = "SELECT Rool_No as roolNo ,STUDENT_NAME as name , STUDENT_ADDRESS as address FROM STUDENT WHERE Rool_No=?";
         Student student = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<Student>(Student.class), roolNo);
         return student;
+    }
+
+    @Override
+    public Map<String, List<String>> groupStudentByAddress() {
+        String sql = "SELECT * FROM STUDENT";
+        Map<String , List<String>> query = jdbcTemplate.query(sql,new StudentAddressExtractor());
+        return query;
     }
 
 

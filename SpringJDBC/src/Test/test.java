@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
+import java.util.Map;
 
 public class test {
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class test {
         System.out.println("application context loaded....");
         StudentDAOHelper studentDAOHelper = context.getBean("studentDaoHelper",StudentDAOHelper.class);
         StudentDAOimpl studentDAOimpl = context.getBean("studentDao", StudentDAOimpl.class);
-        studentDAOHelper.setUpStudentTable();
+//        studentDAOHelper.setUpStudentTable();
 //        Student student = new Student();
 //        student.setRoolNo(2);
 //        student.setName("Ngoc");
@@ -32,7 +33,13 @@ public class test {
         System.out.println("xuat ra thong tin hang thu 2 :");
         Student student =studentDAOimpl.fidnStudentByRollNo(2);
         System.out.println(student);
-        studentDAOimpl.cleanUp();
+        List<Student> studentList1 = studentDAOimpl.findStudentByName("Ha");
+        studentDAOHelper.printStudents(studentList1);
+
+        Map<String , List<String>> groupStudentByAddress =studentDAOimpl.groupStudentByAddress();
+        System.out.println(groupStudentByAddress);
+
+//        studentDAOimpl.cleanUp();
 
     }
 }
