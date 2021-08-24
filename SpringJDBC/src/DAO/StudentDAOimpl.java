@@ -5,13 +5,17 @@ import ResultSetExtractor.StudentAddressExtractor;
 import ResultSetExtractor.StudentResultExtractor;
 import RowMapper.StudentRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.lang.model.type.ArrayType;
 import javax.sql.DataSource;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -61,8 +65,8 @@ public class StudentDAOimpl implements StudentDAO {
 
     @Override
     public List<Student> findStudentByName(String name) {
-        String sql ="SELECT * FROM STUDENT WHERE STUDENT_NAME = ? ";
-        List<Student> studentList = jdbcTemplate.query(sql,new StudentResultExtractor(),name);
+        String sql = "SELECT * FROM STUDENT WHERE STUDENT_NAME = ? ";
+        List<Student> studentList = jdbcTemplate.query(sql, new StudentResultExtractor(), name);
         return studentList;
     }
 
@@ -100,8 +104,54 @@ public class StudentDAOimpl implements StudentDAO {
     @Override
     public Map<String, List<String>> groupStudentByAddress() {
         String sql = "SELECT * FROM STUDENT";
-        Map<String , List<String>> query = jdbcTemplate.query(sql,new StudentAddressExtractor());
+        Map<String, List<String>> query = jdbcTemplate.query(sql, new StudentAddressExtractor());
         return query;
+    }
+
+    @Override
+    public int updateStudent(Student student) {
+        String sql = "UPDATE School.Student SET STUDENT_ADDRESS= ? WHERE ROOL_NO = ?";
+        Object[] args = {student.getAddress(), student.getRoolNo()};
+        int updateRow = jdbcTemplate.update(sql, args);
+
+        System.out.println(updateRow);
+        return updateRow;
+    }
+
+    @Override
+    @Transactional
+    public int updateStudent(List<Student> studentList) {
+        String sql = "UPDATE School.Student SET STUDENT_ADDRESS = ? WHERE ROOL_NO = ?";
+//        List<Object[]> studentListObject = new ArrayList<>();
+//        for(Student i:studentList){
+//            Object [] args = {i.getAddress() , i.getRoolNo()};
+//            studentListObject.add(args);
+//        }
+
+        int[] Row = jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                ps.setString(1, studentList.get(i).getAddress());
+                ps.setInt(2, studentList.get(i).getRoolNo());
+                System.out.println("inside method setValues().....");
+            }
+
+            @Override
+            public int getBatchSize() {
+                System.out.println("inside getBatch()...");
+                return studentList.size();
+
+            }
+        });
+
+        int RowUpdateCount = 0;
+        for (int i = 0; i < Row.length; i++) {
+            if (Row[i] == 1) {
+                RowUpdateCount += 1;
+            }
+
+        }
+        return RowUpdateCount;
     }
 
 
