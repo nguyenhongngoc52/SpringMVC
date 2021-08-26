@@ -1,19 +1,9 @@
-package API;
+package DTO;
 
-//domain class
-public class Student {
-    private int id;
+public class StudentDTO {
     private String name;
     private Long mobile;
     private String country;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -37,15 +27,5 @@ public class Student {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", mobile=" + mobile +
-                ", country='" + country + '\'' +
-                '}';
     }
 }

@@ -1,12 +1,10 @@
-package DAO;
+package Service;
 
 import API.Student;
 
 import java.util.List;
 
-
-//data access layer
-public interface StudentDAO {
+public interface StudentService {
     List<Student> loadStudent();
     void saveStudent(Student student);
     Student getStudent(int id);
